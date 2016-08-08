@@ -6,7 +6,6 @@
 #
 
 
-
 package 'Install epel release repo' do 
 	package_name 'epel-release'
 	action :install
