@@ -5,12 +5,18 @@
 # All rights reserved 
 #
 
+package 'epel-release'
 
 
-['gcc', 'glibc', 'glibc-common', 'gd', 'gd-devel', 'make', 'net-snmp', 'openssl-devel', 'xinetd', 'unzip'].each do |pkg|
+['gcc', 'glibc', 'glibc-common', 'gd', 'gd-devel', 'gcc-c++','make', 'net-snmp', 'openssl-devel', 'xinetd', 'unzip', 'nodejs', 'npm'].each do |pkg|
 	package pkg do 
 		action :install
 	end
+end
+
+execute 'Install nagios-redis' do 
+	command 'npm install -g nagios-redis'
+	action :run
 end
 
 
@@ -70,3 +76,4 @@ unless Dir.exists?('/home/vagrant/nagios-4.1.1')
 	end
 
 end
+

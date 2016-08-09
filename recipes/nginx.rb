@@ -1,22 +1,24 @@
 #
 # Cookbook Name:: nagios-cookbook
-# Recipe:: redis
+# Recipe:: default
 #
 # All rights reserved 
 #
 
+
+
+# Install epel-release repo 
 package 'epel-release'
 
+# Install nginx 
+package 'nginx'
+
 package 'nrpe'
-package 'redis'
 package 'nagios-plugins-all'
 
-service 'redis' do 
-	action [ :enable, :start ]
-end
 
 template '/etc/nagios/nrpe.cfg' do 
-		source 'redis_nrpe.cfg.erb'
+		source 'nginx_nrpe.cfg.erb'
 		owner 'nagios'
 		group 'nagios'
 		mode 0664
@@ -27,6 +29,11 @@ template '/etc/nagios/nrpe.cfg' do
 end
 
 
+# Enable and start nginx 
+service 'nginx' do 
+	action [ :enable, :start ]
+end
+
 service 'nrpe' do 
-        action [ :enable, :start ]
+	action [ :enable, :start ]
 end

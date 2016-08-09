@@ -72,3 +72,5 @@ service 'nagios' do
 	action [ :enable, :restart]
 end
 
+include_recipe 'nagios-cookbook::nagios_redis'
+
