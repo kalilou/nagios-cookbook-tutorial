@@ -28,6 +28,15 @@ template '/etc/nagios/nrpe.cfg' do
 		)  
 end
 
+cookbook_file '/etc/nginx/conf.d/status.conf' do
+ 	source 'nginx_status.conf'
+  	owner 'nginx'
+  	group 'nginx'
+  	mode 0664
+  	action :create
+end
+
+
 
 # Enable and start nginx 
 service 'nginx' do 

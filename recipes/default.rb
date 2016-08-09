@@ -73,4 +73,5 @@ service 'nagios' do
 end
 
 include_recipe 'nagios-cookbook::nagios_redis'
+include_recipe 'nagios-cookbook::nagios_nginx'
 

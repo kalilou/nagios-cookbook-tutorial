@@ -14,10 +14,14 @@ package 'epel-release'
 	end
 end
 
+package 'python-devel'
+
 execute 'Install nagios-redis' do 
 	command 'npm install -g nagios-redis'
 	action :run
 end
+
+
 
 
 user 'nagios' do 
@@ -30,6 +34,15 @@ group 'nagios' do
 	action :create 
 	members ['nagios', 'apache']
 end
+
+# Install nagios plugin check_nginx for monitoring nginx
+cookbook_file '/usr/local/nagios/libexec/check_nginx' do
+ 	source 'check_nginx'
+  	owner 'nagios'
+  	group 'nagios'
+  	mode 0664
+  	action :create
+end 
 
 remote_file '/home/vagrant/nagios-4.1.1.tar.gz' do 
 	source 'https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.1.1.tar.gz'

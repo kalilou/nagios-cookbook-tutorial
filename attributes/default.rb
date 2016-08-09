@@ -4,3 +4,4 @@ default['nagios_pid_file'] = '/usr/local/nagios/var/nagios.pid'
 
 default['nagios_server_ip'] = '192.168.50.200'
 default['redis_server_ip'] = '192.168.50.201'
+default['nginx_server_ip'] = '192.168.50.202'
